@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Feature Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    
+    <style>
+        :root[data-theme="dark"] {
+            --bg-main: #090d16;
+            --bg-card: #111827;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --accent: #3b82f6;
+            --border: #1f2937;
+        }
+        :root[data-theme="light"] {
+            --bg-main: #f3f4f6;
+            --bg-card: #ffffff;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --accent: #1d4ed8;
+            --border: #e5e7eb;
+        }
+        :root[data-theme="cyberpunk"] {
+            --bg-main: #120024;
+            --bg-card: #240046;
+            --text-main: #00ffff;
+            --text-muted: #ff007f;
+            --accent: #ffee00;
+            --border: #ff007f;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .hub-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+        *:focus-visible {
+            outline: 3px solid var(--accent) !important;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased">
+
+    <a href="#main-content" class="sr-only focus:not-sr-only absolute top-3 left-3 bg-blue-600 text-white px-4 py-2 rounded-xl z-50 font-bold">Skip to main content</a>
+
+    <header class="hub-card sticky top-0 z-40 backdrop-blur-md bg-opacity-95 shadow-sm" role="banner" id="header-node">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-cubes text-2xl text-blue-500" aria-hidden="true"></i>
+                <h1 class="text-xl font-black tracking-wide">Multi Feature Hub</h1>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <label for="themeSelect" class="text-xs font-bold tracking-wide uppercase text-muted">Theme:</label>
+                <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-slate-800 text-white text-sm rounded-xl px-3 py-2 border border-slate-700 cursor-pointer font-medium">
+                    <option value="dark">🌙 Dark</option>
+                    <option value="light">☀️ Light</option>
+                    <option value="cyberpunk">⚡ Cyberpunk</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="flex-grow max-w-7xl w-full mx-auto px-4 py-6 focus:outline-none" tabindex="-1">
+        
+        <div class="max-w-xl mx-auto mb-8 relative">
+            <label for="searchBar" class="sr-only">Search tools and games</label>
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400" aria-hidden="true"></i>
+            <input type="text" id="searchBar" onkeyup="filterHub()" placeholder="Search tools or games..." class="w-full pl-12 pr-4 py-3.5 bg-slate-800/40 border border-slate-700 rounded-2xl text-white placeholder-slate-400 font-medium">
+        </div>
+
+        <section class="mb-10" aria-labelledby="tools-heading" id="tools-section-node">
+            <h2 id="tools-heading" class="text-lg font-black tracking-wide uppercase mb-6 text-blue-500 flex items-center gap-2">
+                <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Utility Tools
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
+                
+                <div class="hub-card rounded-2xl p-5 flex flex-col justify-between tool-card transition shadow-sm" data-keywords="age calculator birth date lookup time local">
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Age Calculator</h3>
+                        <p class="text-sm text-muted mb-5">Calculate your exact age parameters in real-time format locally.</p>
+                    </div>
+                    <button onclick="openModal('ageModal')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Open Tool</button>
+                </div>
+
+                <div class="hub-card rounded-2xl p-5 flex flex-col justify-between tool-card transition shadow-sm" data-keywords="bmi calculator health fitness weight scale check">
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">BMI Calculator</h3>
+                        <p class="text-sm text-muted mb-5">Analyze your body mass index ratio and weight fitness scale.</p>
+                    </div>
+                    <button onclick="openModal('bmiModal')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Open Tool</button>
+                </div>
+
+                <div class="hub-card rounded-2xl p-5 flex flex-col justify-between tool-card transition shadow-sm" data-keywords="password generator security strong custom keys crypto">
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Password Generator</h3>
+                        <p class="text-sm text-muted mb-5">Generate highly secure localized custom military-grade passwords.</p>
+                    </div>
+                    <button onclick="openModal('passwordModal')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Open Tool</button>
+                </div>
+
+                <div class="hub-card rounded-2xl p-5 flex flex-col justify-between tool-card transition shadow-sm" data-keywords="qr code generator offline text links matrix">
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">QR Code Generator</h3>
+                        <p class="text-sm text-muted mb-5">Create custom high-resolution QR codes offline instantly.</p>
+                    </div>
+                    <button onclick="openModal('qrModal')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Open Tool</button>
+                </div>
+
+                <div class="hub-card rounded-2xl p-5 flex flex-col justify-between tool-card transition shadow-sm" data-keywords="text utility uppercase lowercase analytics counter format">
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Text Utility Tool</h3>
+                        <p class="text-sm text-muted mb-5">Transform cases and handle responsive local text analysis metrics.</p>
+                    </div>
+                    <button onclick="openModal('textModal')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Open Tool</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mb-10" aria-labelledby="games-heading" id="games-section-node">
+            <h2 id="games-heading" class="text-lg font-black tracking-wide uppercase mb-6 text-purple-500 flex items-center gap-2">
+                <i class="fa-solid fa-gamepad" aria-hidden="true"></i> Mini Web Games
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="gamesGrid">
+                
+                <div class="hub-card rounded-2xl p-5 flex flex-col justify-between tool-card transition shadow-sm" data-keywords="tic tac toe zero kaata strategy match mini bot">
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Tic-Tac-Toe</h3>
+                        <p class="text-sm text-muted mb-5">Enjoy classic zero-kaata puzzle strategy matches against an algorithmic smart bot.</p>
+                    </div>
+                    <button onclick="openModal('tttModal')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold transition">Open Game</button>
+                </div>
+
+                <div class="hub-card rounded-2xl p-5 flex flex-col justify-between tool-card transition shadow-sm" data-keywords="snake game arcade retro canvas points keys speed">
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Retro Snake Game</h3>
+                        <p class="text-sm text-muted mb-5">Classic arcade keyboard canvas game with real-time frame matrix scores.</p>
+                    </div>
+                    <button onclick="openModal('snakeModal'); setupSnakeCanvas();" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold transition">Open Game</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="ageModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden" role="dialog" aria-modal="true" aria-labelledby="ageTitle" tabindex="-1">
+        <div class="hub-card max-w-md w-full rounded-2xl p-6 relative shadow-2xl">
+            <button onclick="closeModal('ageModal')" aria-label="Close Age Calculator" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-10 h-10 flex items-center justify-center rounded-full"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="ageTitle" class="text-lg font-bold mb-4 text-blue-400">Age Calculator</h3>
+            <div class="space-y-4">
+                <div>
+                    <label for="birthDate" class="block text-sm font-semibold mb-2">Select Date of Birth:</label>
+                    <input type="date" id="birthDate" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white">
+                </div>
+                <button onclick="calculateAge()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Calculate Age</button>
+                <div id="ageResult" aria-live="polite" class="text-center font-bold p-3 rounded-xl bg-slate-900 hidden border border-slate-800 text-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bmiModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden" role="dialog" aria-modal="true" aria-labelledby="bmiTitle" tabindex="-1">
+        <div class="hub-card max-w-md w-full rounded-2xl p-6 relative shadow-2xl">
+            <button onclick="closeModal('bmiModal')" aria-label="Close BMI Calculator" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-10 h-10 flex items-center justify-center rounded-full"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="bmiTitle" class="text-lg font-bold mb-4 text-blue-400">BMI Calculator</h3>
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="bmiWeight" class="block text-sm font-semibold mb-2">Weight (kg):</label>
+                        <input type="number" id="bmiWeight" placeholder="e.g. 70" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white">
+                    </div>
+                    <div>
+                        <label for="bmiHeight" class="block text-sm font-semibold mb-2">Height (cm):</label>
+                        <input type="number" id="bmiHeight" placeholder="e.g. 175" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white">
+                    </div>
+                </div>
+                <button onclick="calculateBMI()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Calculate BMI</button>
+                <div id="bmiResult" aria-live="polite" class="text-center font-bold p-3 rounded-xl bg-slate-900 hidden border border-slate-800 text-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="passwordModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden" role="dialog" aria-modal="true" aria-labelledby="passTitle" tabindex="-1">
+        <div class="hub-card max-w-md w-full rounded-2xl p-6 relative shadow-2xl">
+            <button onclick="closeModal('passwordModal')" aria-label="Close Password Generator" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-10 h-10 flex items-center justify-center rounded-full"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="passTitle" class="text-lg font-bold mb-4 text-blue-400">Password Generator</h3>
+            <div class="space-y-4">
+                <div id="passOutput" aria-live="polite" class="bg-slate-900 p-3 rounded-xl text-center font-mono border border-slate-800 select-all min-h-[48px] flex items-center justify-center truncate text-sm">Click Generate Button...</div>
+                <div>
+                    <div class="flex justify-between text-sm mb-2 font-medium">
+                        <label for="passLength">Password Character Length:</label>
+                        <span id="lengthVal" class="font-bold text-blue-400">12</span>
+                    </div>
+                    <input type="range" id="passLength" min="6" max="30" value="12" oninput="document.getElementById('lengthVal').innerText=this.value" class="w-full accent-blue-500">
+                </div>
+                <div class="space-y-2 text-sm font-medium">
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="passNum" checked class="w-4 h-4 rounded text-blue-500"> Include Numbers (0-9)</label>
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="passSym" checked class="w-4 h-4 rounded text-blue-500"> Include Special Symbols</label>
+                </div>
+                <button onclick="generatePassword()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Generate Strong Password</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="qrModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden" role="dialog" aria-modal="true" aria-labelledby="qrTitle" tabindex="-1">
+        <div class="hub-card max-w-md w-full rounded-2xl p-6 relative shadow-2xl">
+            <button onclick="closeModal('qrModal')" aria-label="Close QR Generator" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-10 h-10 flex items-center justify-center rounded-full"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="qrTitle" class="text-lg font-bold mb-4 text-blue-400">QR Code Generator</h3>
+            <div class="space-y-4">
+                <div>
+                    <label for="qrInput" class="block text-sm font-semibold mb-2">Enter Content String or URL:</label>
+                    <input type="text" id="qrInput" placeholder="https://..." class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white">
+                </div>
+                <button onclick="generateQRCode()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Generate QR Display</button>
+                <div class="flex justify-center p-3 bg-white rounded-xl mx-auto hidden" id="qrContainer">
+                    <canvas id="qrCanvas" aria-label="Generated QR Code Graphic Display Matrix"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="textModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden" role="dialog" aria-modal="true" aria-labelledby="textTitle" tabindex="-1">
+        <div class="hub-card max-w-lg w-full rounded-2xl p-6 relative shadow-2xl">
+            <button onclick="closeModal('textModal')" aria-label="Close Text Utility" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-10 h-10 flex items-center justify-center rounded-full"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="textTitle" class="text-lg font-bold mb-4 text-blue-400">Text Utility Tool</h3>
+            <div class="space-y-4">
+                <div>
+                    <label for="textInput" class="block text-sm font-semibold mb-2">Input String Log Text:</label>
+                    <textarea id="textInput" rows="4" oninput="analyzeText()" placeholder="Type here..." class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white resize-none"></textarea>
+                </div>
+                <div class="flex justify-between text-xs font-mono bg-slate-900 p-2.5 rounded-xl" aria-live="polite">
+                    <span id="wordCount">Words: 0</span> <span id="charCount">Characters: 0</span>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="convertCase('up')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 rounded-xl font-bold transition">UPPERCASE</button>
+                    <button onclick="convertCase('low')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 rounded-xl font-bold transition">lowercase</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tttModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden" role="dialog" aria-modal="true" aria-labelledby="tttTitle" tabindex="-1">
+        <div class="hub-card max-w-md w-full rounded-2xl p-6 relative shadow-2xl flex flex-col items-center">
+            <button onclick="closeModal('tttModal')" aria-label="Close Tic Tac Toe" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-10 h-10 flex items-center justify-center rounded-full"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="tttTitle" class="text-lg font-bold mb-4 text-purple-400">Tic-Tac-Toe Game</h3>
+            <div class="grid grid-cols-3 gap-2.5 w-48 h-48 mb-4" role="grid">
+                <button onclick="makeMove(0)" id="cell0" aria-label="Row 1 Cell 1, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+                <button onclick="makeMove(1)" id="cell1" aria-label="Row 1 Cell 2, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+                <button onclick="makeMove(2)" id="cell2" aria-label="Row 1 Cell 3, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+                <button onclick="makeMove(3)" id="cell3" aria-label="Row 2 Cell 1, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+                <button onclick="makeMove(4)" id="cell4" aria-label="Row 2 Cell 2, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+                <button onclick="makeMove(5)" id="cell5" aria-label="Row 2 Cell 3, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+                <button onclick="makeMove(6)" id="cell6" aria-label="Row 3 Cell 1, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+                <button onclick="makeMove(7)" id="cell7" aria-label="Row 3 Cell 2, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+                <button onclick="makeMove(8)" id="cell8" aria-label="Row 3 Cell 3, Empty" class="bg-slate-800 text-2xl font-bold rounded-xl border border-slate-700"></button>
+            </div>
+            <div class="w-full flex justify-between items-center bg-slate-900 p-3 rounded-xl border border-slate-800 mt-2">
+                <span id="tttStatus" aria-live="polite" class="text-sm font-semibold text-purple-400">Your turn (X)</span>
+                <button onclick="resetTicTacToe()" class="bg-slate-800 text-xs px-3 py-2 rounded-lg font-bold hover:bg-slate-700">Reset Game</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="snakeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 hidden" role="dialog" aria-modal="true" aria-labelledby="snakeTitle" tabindex="-1">
+        <div class="hub-card max-w-md w-full rounded-2xl p-6 relative shadow-2xl flex flex-col items-center">
+            <button onclick="closeModal('snakeModal'); clearInterval(snakeGameLoop);" aria-label="Close Snake Game" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl w-10 h-10 flex items-center justify-center rounded-full"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="snakeTitle" class="text-lg font-bold mb-3 text-purple-400">Retro Snake Game</h3>
+            <div class="text-sm font-mono mb-3 bg-slate-900 px-3 py-2 rounded-xl border border-slate-800 w-full flex justify-between" aria-live="polite">
+                <span>Score Grid Tracker:</span> <span id="snakeScore" class="text-orange-400 font-bold">0</span>
+            </div>
+            <canvas id="snakeCanvas" width="300" height="180" class="bg-slate-950 border border-slate-800 rounded-xl mb-4 shadow-inner"></canvas>
+            <button onclick="startSnakeGame()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold transition">Start Game Matrix</button>
+        </div>
+    </div>
+
+    <footer class="hub-card border-t py-6 mt-auto text-center" role="contentinfo">
+        <p class="text-sm font-bold tracking-wide text-muted">
+            Copyright &copy; 2026 Developed by Naman
+        </p>
+    </footer>
+
+    <script>
+        let lastFocusedElement = null;
+
+        function changeTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+        }
+
+        function filterHub() {
+            const query = document.getElementById('searchBar').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                card.style.display = keywords.includes(query) ? "flex" : "none";
+            });
+        }
+
+        function openModal(id) {
+            lastFocusedElement = document.activeElement;
+            const targetModal = document.getElementById(id);
+            
+            document.getElementById('header-node').setAttribute('aria-hidden', 'true');
+            document.getElementById('main-content').setAttribute('aria-hidden', 'true');
+            document.querySelector('footer').setAttribute('aria-hidden', 'true');
+
+            targetModal.classList.remove('hidden');
+            targetModal.focus();
+        }
+
+        function closeModal(id) {
+            const targetModal = document.getElementById(id);
+            targetModal.classList.add('hidden');
+
+            document.getElementById('header-node').removeAttribute('aria-hidden');
+            document.getElementById('main-content').removeAttribute('aria-hidden');
+            document.querySelector('footer').removeAttribute('aria-hidden');
+
+            if (lastFocusedElement) lastFocusedElement.focus();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const visibleModal = document.querySelector('[role="dialog"]:not(.hidden)');
+                if (visibleModal) closeModal(visibleModal.id);
+            }
+        });
+
+        function calculateAge() {
+            const val = document.getElementById('birthDate').value;
+            const res = document.getElementById('ageResult');
+            if(!val) return;
+            const dob = new Date(val); const today = new Date();
+            let y = today.getFullYear() - dob.getFullYear();
+            let m = today.getMonth() - dob.getMonth();
+            let d = today.getDate() - dob.getDate();
+            if (d < 0) { m--; d += new Date(today.getFullYear(), today.getMonth(), 0).getDate(); }
+            if (m < 0) { y--; m += 12; }
+            res.innerHTML = `Result: ${y} Years, ${m} Months, ${d} Days old.`;
+            res.classList.remove('hidden');
+        }
+
+        function calculateBMI() {
+            const w = parseFloat(document.getElementById('bmiWeight').value);
+            const h = parseFloat(document.getElementById('bmiHeight').value) / 100;
+            const res = document.getElementById('bmiResult');
+            if(!w || !h) return;
+            const bmi = (w / (h * h)).toFixed(1);
+            let state = (bmi < 18.5) ? "Underweight" : (bmi < 24.9) ? "Normal" : (bmi < 29.9) ? "Overweight" : "Obese";
+            res.innerHTML = `BMI Value: ${bmi} (${state})`;
+            res.classList.remove('hidden');
+        }
+
+        function generatePassword() {
+            const length = parseInt(document.getElementById('passLength').value);
+            let pool = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            if(document.getElementById('passNum').checked) pool += "0123456789";
+            if(document.getElementById('passSym').checked) pool += "!@#$%^&*()_+-=";
+            let str = "";
+            for(let i=0; i < length; i++) str += pool.charAt(Math.floor(Math.random() * pool.length));
+            document.getElementById('passOutput').innerText = str;
+        }
+
+        function generateQRCode() {
+            const val = document.getElementById('qrInput').value.trim();
+            const container = document.getElementById('qrContainer');
+            if(!val) return;
+            container.classList.remove('hidden');
+            new QRious({ element: document.getElementById('qrCanvas'), value: val, size: 150 });
+        }
+
+        function analyzeText() {
+            const val = document.getElementById('textInput').value;
+            document.getElementById('charCount').innerText = `Characters: ${val.length}`;
+            document.getElementById('wordCount').innerText = `Words: ${val.trim() === "" ? 0 : val.trim().split(/\s+/).length}`;
+        }
+        function convertCase(m) {
+            const input = document.getElementById('textInput');
+            input.value = (m === 'up') ? input.value.toUpperCase() : input.value.toLowerCase();
+            analyzeText();
+        }
+
+        let gridState = ["", "", "", "", "", "", "", "", ""];
+        let isPlayable = true;
+        function makeMove(i) {
+            if(gridState[i] !== "" || !isPlayable) return;
+            gridState[i] = "X";
+            document.getElementById(`cell${i}`).innerText = "X";
+            document.getElementById(`cell${i}`).setAttribute('aria-label', `Cell ${i+1} filled with X`);
+            if(checkWin("X")) { document.getElementById('tttStatus').innerText = "🎉 You Won!"; isPlayable = false; return; }
+            if(!gridState.includes("")) { document.getElementById('tttStatus').innerText = "Draw!"; isPlayable = false; return; }
+            
+            isPlayable = false;
+            setTimeout(() => {
+                let empty = []; gridState.forEach((v, index) => { if(v==="") empty.push(index); });
+                if(empty.length > 0) {
+                    let choose = empty[Math.floor(Math.random() * empty.length)];
+                    gridState[choose] = "O";
+                    document.getElementById(`cell${choose}`).innerText = "O";
+                    document.getElementById(`cell${choose}`).setAttribute('aria-label', `Cell ${choose+1} filled with O`);
+                    if(checkWin("O")) { document.getElementById('tttStatus').innerText = "🤖 Bot Won!"; return; }
+                }
+                isPlayable = true;
+                document.getElementById('tttStatus').innerText = "Your turn (X)";
+            }, 300);
+        }
+        function checkWin(p) {
+            const lines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            return lines.some(l => l.every(idx => gridState[idx] === p));
+        }
+        function resetTicTacToe() {
+            gridState = ["", "", "", "", "", "", "", "", ""]; isPlayable = true;
+            document.getElementById('tttStatus').innerText = "Your turn (X)";
+            for(let i=0; i<9; i++) {
+                document.getElementById(`cell${i}`).innerText = "";
+                document.getElementById(`cell${i}`).setAttribute('aria-label', `Cell ${i+1}, Empty`);
+            }
+        }
+
+        let sCanvas, sCtx, snake, snakeDir, snakeFood, snakeScore, snakeGameLoop;
+        const block = 10;
+        function setupSnakeCanvas() { sCanvas = document.getElementById('snakeCanvas'); sCtx = sCanvas.getContext('2d'); }
+        function startSnakeGame() {
+            clearInterval(snakeGameLoop); snakeScore = 0; snakeDir = 'RIGHT';
+            document.getElementById('snakeScore').innerText = snakeScore;
+            snake = [{x: 40, y: 40}, {x: 30, y: 40}, {x: 20, y: 40}];
+            spawnFoodData(); snakeGameLoop = setInterval(loopSnake, 100);
+        }
+        function spawnFoodData() {
+            snakeFood = {
+                x: Math.floor(Math.random() * (sCanvas.width / block)) * block,
+                y: Math.floor(Math.random() * (sCanvas.height / block)) * block
+            }
+        }
+        document.addEventListener('keydown', e => {
+            if(e.key === 'ArrowUp' && snakeDir !== 'DOWN') snakeDir = 'UP';
+            if(e.key === 'ArrowDown' && snakeDir !== 'UP') snakeDir = 'DOWN';
+            if(e.key === 'ArrowLeft' && snakeDir !== 'RIGHT') snakeDir = 'LEFT';
+            if(e.key === 'ArrowRight' && snakeDir !== 'LEFT') snakeDir = 'RIGHT';
+        });
+        function loopSnake() {
+            let hX = snake[0].x; let hY = snake[0].y;
+            if(snakeDir === 'UP') hY -= block; if(snakeDir === 'DOWN') hY += block;
+            if(snakeDir === 'LEFT') hX -= block; if(snakeDir === 'RIGHT') hX += block;
+            if(hX < 0 || hX >= sCanvas.width || hY < 0 || hY >= sCanvas.height || snake.some(s => s.x === hX && s.y === hY)) {
+                clearInterval(snakeGameLoop); alert(`Game Over! Score: ${snakeScore}`); return;
+            }
+            let head = {x: hX, y: hY};
+            if(hX === snakeFood.x && hY === snakeFood.y) { snakeScore += 10; document.getElementById('snakeScore').innerText = snakeScore; spawnFoodData(); }
+            else { snake.pop(); }
+            snake.unshift(head);
+            sCtx.clearRect(0, 0, sCanvas.width, sCanvas.height);
+            sCtx.fillStyle = '#ef4444'; sCtx.fillRect(snakeFood.x, snakeFood.y, block, block);
+            sCtx.fillStyle = '#3b82f6'; snake.forEach(s => sCtx.fillRect(s.x, s.y, block, block));
+        }
+    </script>
+</body>
+</html>
+Hello, Robin. 
