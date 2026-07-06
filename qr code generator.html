@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator | Multi Feature Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #090d16; color: #f9fafb; font-family: sans-serif; }
+        .hub-card { background-color: #111827; border: 1px solid #1f2937; }
+    </style>
+</head>
+<body class="min-h-screen p-4">
+    <div class="max-w-md mx-auto hub-card rounded-2xl p-6 mt-10">
+        <a href="index.html" class="text-blue-500 mb-4 block"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        <h3 class="text-xl font-bold mb-4 text-blue-400">QR Code Generator</h3>
+        
+        <div class="space-y-4">
+            <input type="text" id="qrText" placeholder="Enter text or URL" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white">
+            <button onclick="generateQR()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Generate QR Code</button>
+        </div>
+        
+        <div id="qrResult" class="flex flex-col items-center mt-6 hidden">
+            <canvas id="qrCanvas" class="bg-white p-2 rounded-xl"></canvas>
+            <div class="grid grid-cols-1 w-full mt-4 gap-2">
+                <button onclick="downloadQR()" class="bg-slate-700 hover:bg-slate-600 py-2 rounded-lg text-sm transition font-bold"><i class="fa-solid fa-download"></i> Download QR</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateQR() {
+            const text = document.getElementById('qrText').value;
+            if(!text) return alert("Please enter text or URL");
+            
+            new QRious({
+                element: document.getElementById('qrCanvas'),
+                value: text,
+                size: 200
+            });
+            document.getElementById('qrResult').classList.remove('hidden');
+        }
+
+        function downloadQR() {
+            const canvas = document.getElementById('qrCanvas');
+            const link = document.createElement('a');
+            link.download = 'qr-code.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>

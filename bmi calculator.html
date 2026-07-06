@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator | Multi Feature Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #090d16; color: #f9fafb; font-family: sans-serif; }
+        .hub-card { background-color: #111827; border: 1px solid #1f2937; }
+    </style>
+</head>
+<body class="min-h-screen p-4">
+    <div class="max-w-md mx-auto hub-card rounded-2xl p-6 mt-10">
+        <a href="index.html" class="text-blue-500 mb-4 block"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        <h3 class="text-xl font-bold mb-4 text-blue-400">BMI Calculator</h3>
+        
+        <div class="space-y-4">
+            <input type="number" id="weight" placeholder="Weight (kg)" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white">
+            <input type="number" id="height" placeholder="Height (cm)" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white">
+            <button onclick="calculateBMI()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Calculate BMI</button>
+        </div>
+        
+        <div id="bmiResult" class="text-center font-bold p-4 rounded-xl bg-slate-900 mt-4 border border-slate-800 hidden space-y-3">
+            <p id="resultText" class="text-lg"></p>
+            <div class="grid grid-cols-2 gap-2">
+                <button onclick="copyResult()" class="bg-slate-700 hover:bg-slate-600 py-2 rounded-lg text-sm transition"><i class="fa-solid fa-copy"></i> Copy</button>
+                <button onclick="shareResult()" class="bg-slate-700 hover:bg-slate-600 py-2 rounded-lg text-sm transition"><i class="fa-solid fa-share-nodes"></i> Share</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100;
+            
+            if (!weight || !height) return alert("Please enter valid weight and height.");
+            
+            const bmi = (weight / (height * height)).toFixed(1);
+            let category = "";
+            
+            if (bmi < 18.5) category = "Underweight";
+            else if (bmi < 24.9) category = "Normal weight";
+            else if (bmi < 29.9) category = "Overweight";
+            else category = "Obese";
+            
+            const resultText = document.getElementById('resultText');
+            resultText.innerText = `Your BMI is ${bmi} (${category}).`;
+            document.getElementById('bmiResult').classList.remove('hidden');
+        }
+
+        function copyResult() {
+            const text = document.getElementById('resultText').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Result copied to clipboard!");
+        }
+
+        function shareResult() {
+            const text = document.getElementById('resultText').innerText;
+            if (navigator.share) {
+                navigator.share({ title: 'BMI Result', text: text });
+            } else {
+                alert("Sharing is not supported in this browser.");
+            }
+        }
+    </script>
+</body>
+</html>
