@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator | Multi Feature Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body { background-color: #090d16; color: #f9fafb; font-family: sans-serif; }
+        .hub-card { background-color: #111827; border: 1px solid #1f2937; }
+    </style>
+</head>
+<body class="p-4">
+    <div class="max-w-md mx-auto hub-card rounded-2xl p-6 mt-10">
+        <a href="index.html" class="text-blue-500 mb-4 block underline">Back to Home</a>
+        <h1 class="text-2xl font-bold mb-6 text-blue-400">Age Calculator</h1>
+        
+        <form id="ageForm" class="space-y-4" onsubmit="event.preventDefault(); calculateAge();">
+            <div>
+                <label for="birthdate" class="block text-sm font-medium mb-1">Enter your Date of Birth</label>
+                <input type="date" id="birthdate" aria-required="true" required class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white focus:ring-2 focus:ring-blue-500">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">Calculate Age</button>
+        </form>
+        
+        <div id="result" role="region" aria-live="polite" class="mt-6 p-4 rounded-xl bg-slate-900 border border-slate-800 hidden">
+            <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wide">Your Age is:</h2>
+            <p id="resultText" class="text-2xl font-bold text-blue-400 mt-2"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateAge() {
+            const birthdate = new Date(document.getElementById('birthdate').value);
+            const today = new Date();
+            
+            if (isNaN(birthdate)) return alert("Please select a valid date.");
+            
+            let years = today.getFullYear() - birthdate.getFullYear();
+            let months = today.getMonth() - birthdate.getMonth();
+            let days = today.getDate() - birthdate.getDate();
+            
+            if (days < 0) {
+                months--;
+                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            const resultText = document.getElementById('resultText');
+            resultText.innerText = `${years} years, ${months} months, and ${days} days old.`;
+            document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

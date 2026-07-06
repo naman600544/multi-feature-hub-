@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Feature Hub | All-in-One Tools</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #090d16; color: #f9fafb; font-family: sans-serif; }
+        .hub-card { background-color: #111827; border: 1px solid #1f2937; }
+    </style>
+</head>
+<body class="p-4">
+    <a href="#tools-section" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 p-2 text-white z-50">Skip to content</a>
+
+    <div class="max-w-2xl mx-auto mt-10">
+        <h1 class="text-4xl font-bold text-center text-blue-400">Multi Feature Hub</h1>
+        <p class="text-center text-gray-400 mt-2 mb-8">Your ultimate collection of daily productivity tools.</p>
+
+        <input type="text" id="searchInput" onkeyup="searchTools()" placeholder="Search tools (e.g. Age, BMI...)" class="w-full p-4 rounded-xl bg-slate-800 border border-slate-700 text-white mb-8 focus:outline-none focus:border-blue-500">
+
+        <div id="tools-section" class="space-y-4">
+            <div class="tool-card hub-card p-5 rounded-xl">
+                <h3 class="font-bold text-lg">Age Calculator</h3>
+                <p class="text-sm text-gray-400 mb-3">Calculate your precise age in years, months, days, and even hours with high accuracy.</p>
+                <a href="age-calculator.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-center py-2 rounded-lg font-bold transition">Open Tool</a>
+            </div>
+
+            <div class="tool-card hub-card p-5 rounded-xl">
+                <h3 class="font-bold text-lg">BMI Calculator</h3>
+                <p class="text-sm text-gray-400 mb-3">Evaluate your Body Mass Index (BMI) to understand your weight status based on health standards.</p>
+                <a href="bmi-calculator.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-center py-2 rounded-lg font-bold transition">Open Tool</a>
+            </div>
+
+            <div class="tool-card hub-card p-5 rounded-xl">
+                <h3 class="font-bold text-lg">Password Generator</h3>
+                <p class="text-sm text-gray-400 mb-3">Create strong, secure, and randomized passwords with customizable length and character sets.</p>
+                <a href="password-generator.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-center py-2 rounded-lg font-bold transition">Open Tool</a>
+            </div>
+
+            <div class="tool-card hub-card p-5 rounded-xl">
+                <h3 class="font-bold text-lg">QR Code Generator</h3>
+                <p class="text-sm text-gray-400 mb-3">Turn your URLs or text into a scannable QR code instantly for sharing purposes.</p>
+                <a href="qr-code-generator.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-center py-2 rounded-lg font-bold transition">Open Tool</a>
+            </div>
+            
+            <p class="text-center text-gray-500 italic mt-6">More tools coming soon...</p>
+        </div>
+
+        <footer class="text-center text-gray-600 mt-12 text-sm">
+            &copy; 2026 Developed by Naman
+        </footer>
+    </div>
+
+    <script>
+        function searchTools() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('tool-card');
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+                cards[i].style.display = title.includes(input) ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>
