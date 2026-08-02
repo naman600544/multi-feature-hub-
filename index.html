@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0f19">
+    
+    <!-- SEO Optimization -->
+    <title>Multi Feature Hub | All-in-One Productivity Suite</title>
+    <meta name="description" content="Access daily productivity tools including Age Calculator, BMI Calculator, Password Generator, QR Code Generator, and ShareBridge.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+    
+    <style>
+        body { 
+            background-color: #0b0f19; 
+            color: #f3f4f6; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+        }
+        .hub-card { 
+            background-color: #111827; 
+            border: 1px solid #1f2937; 
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+
+    <!-- Screen Reader A11y Announcer -->
+    <div id="a11y-announcer" class="sr-only" aria-live="polite"></div>
+
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" 
+       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 bg-blue-600 text-white font-bold py-3 px-5 rounded-lg z-50 focus:outline-none focus:ring-4 focus:ring-blue-400/50 shadow-2xl transition-transform">
+        Skip to main content
+    </a>
+
+    <div class="max-w-5xl mx-auto w-full">
+        
+        <!-- Header Section -->
+        <header class="text-center my-8">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 tracking-tight pb-1">
+                Multi Feature Hub
+            </h1>
+            <p class="text-gray-400 text-sm md:text-base mt-3 font-medium">Your ultimate collection of daily productivity tools.</p>
+        </header>
+
+        <main id="main-content" tabindex="-1" class="focus:outline-none">
+            
+            <!-- Search Section -->
+            <section aria-label="Search Tools" class="mb-10 max-w-2xl mx-auto">
+                <div>
+                    <!-- Restored exact label as requested -->
+                    <label for="searchInput" class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+                        Search Tools
+                    </label>
+                    <div class="relative flex items-center group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500 group-focus-within:text-blue-400 transition-colors" aria-hidden="true">
+                            <i class="fas fa-search text-lg"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Search by name or keyword (e.g. Age, BMI, Password...)" 
+                            class="w-full p-4 pl-12 pr-12 rounded-2xl bg-[#111827] border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all font-medium text-base shadow-sm"
+                            autocomplete="off"
+                        >
+                        <button 
+                            type="button" 
+                            id="clearButton"
+                            class="hidden absolute right-3 text-gray-500 hover:text-white bg-gray-800 hover:bg-gray-700 transition-all p-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            aria-label="Clear search"
+                        >
+                            <i class="fas fa-times text-sm" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tools Grid -->
+            <section id="tools-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" aria-label="Available Tools">
+                
+                <!-- 1. Age Calculator -->
+                <article class="relative tool-card hub-card p-6 rounded-2xl flex flex-col h-full hover:border-blue-500/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/20 transition-all duration-300 group" aria-labelledby="title-age">
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-blue-500/10 text-blue-400 w-12 h-12 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-colors" aria-hidden="true">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <h2 id="title-age" class="font-bold text-xl text-white tracking-wide group-hover:text-blue-400 transition-colors">Age Calculator</h2>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Calculate your precise age in years, months, days, and hours with high accuracy.
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="tools/age-calculator.html" 
+                           class="block w-full bg-blue-600/10 text-blue-400 group-hover:bg-blue-600 group-hover:text-white text-center py-3 rounded-xl font-bold transition-all text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#111827] after:absolute after:inset-0 after:rounded-2xl">
+                            Open Tool
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 2. BMI Calculator -->
+                <article class="relative tool-card hub-card p-6 rounded-2xl flex flex-col h-full hover:border-blue-500/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/20 transition-all duration-300 group" aria-labelledby="title-bmi">
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-blue-500/10 text-blue-400 w-12 h-12 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-colors" aria-hidden="true">
+                                <i class="fas fa-weight-scale"></i>
+                            </div>
+                            <h2 id="title-bmi" class="font-bold text-xl text-white tracking-wide group-hover:text-blue-400 transition-colors">BMI Calculator</h2>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Evaluate your Body Mass Index (BMI) to understand your weight status and health metrics.
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="tools/bmi-calculator.html" 
+                           class="block w-full bg-blue-600/10 text-blue-400 group-hover:bg-blue-600 group-hover:text-white text-center py-3 rounded-xl font-bold transition-all text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#111827] after:absolute after:inset-0 after:rounded-2xl">
+                            Open Tool
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 3. Password Generator -->
+                <article class="relative tool-card hub-card p-6 rounded-2xl flex flex-col h-full hover:border-blue-500/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/20 transition-all duration-300 group" aria-labelledby="title-pass">
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-blue-500/10 text-blue-400 w-12 h-12 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-colors" aria-hidden="true">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <h2 id="title-pass" class="font-bold text-xl text-white tracking-wide group-hover:text-blue-400 transition-colors">Password Generator</h2>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Create strong, secure, and randomized passwords with customizable rules and symbols.
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="tools/password-generator.html" 
+                           class="block w-full bg-blue-600/10 text-blue-400 group-hover:bg-blue-600 group-hover:text-white text-center py-3 rounded-xl font-bold transition-all text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#111827] after:absolute after:inset-0 after:rounded-2xl">
+                            Open Tool
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 4. QR Code Generator -->
+                <article class="relative tool-card hub-card p-6 rounded-2xl flex flex-col h-full hover:border-blue-500/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/20 transition-all duration-300 group" aria-labelledby="title-qr">
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-blue-500/10 text-blue-400 w-12 h-12 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-colors" aria-hidden="true">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <h2 id="title-qr" class="font-bold text-xl text-white tracking-wide group-hover:text-blue-400 transition-colors">QR Code Generator</h2>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Turn your URLs or text into a scannable QR code instantly for quick sharing purposes.
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="tools/qr-code-generator.html" 
+                           class="block w-full bg-blue-600/10 text-blue-400 group-hover:bg-blue-600 group-hover:text-white text-center py-3 rounded-xl font-bold transition-all text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#111827] after:absolute after:inset-0 after:rounded-2xl">
+                            Open Tool
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 5. ShareBridge -->
+                <article class="relative tool-card hub-card p-6 rounded-2xl flex flex-col h-full hover:border-blue-500/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/20 transition-all duration-300 group" aria-labelledby="title-sharebridge">
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-blue-500/10 text-blue-400 w-12 h-12 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-colors" aria-hidden="true">
+                                <i class="fas fa-share-nodes"></i>
+                            </div>
+                            <h2 id="title-sharebridge" class="font-bold text-xl text-white tracking-wide group-hover:text-blue-400 transition-colors">ShareBridge</h2>
+                        </div>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Secure, ultra-fast peer-to-peer file sharing pipeline. Transfer files directly between devices.
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="tools/sharebridge.html" 
+                           class="block w-full bg-blue-600/10 text-blue-400 group-hover:bg-blue-600 group-hover:text-white text-center py-3 rounded-xl font-bold transition-all text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#111827] after:absolute after:inset-0 after:rounded-2xl">
+                            Open Tool
+                        </a>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="hidden text-center py-16 px-4 rounded-2xl bg-gray-900/50 border border-gray-800 mt-6 backdrop-blur-sm">
+                <i class="fas fa-search-minus text-gray-600 text-4xl mb-4" aria-hidden="true"></i>
+                <h3 class="text-gray-200 text-lg font-bold">No matching tools found</h3>
+                <p class="text-gray-500 text-sm mt-2 mb-5">Try checking your spelling or use different keywords.</p>
+                <button onclick="document.getElementById('clearButton').click()" class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2.5 rounded-xl font-medium transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Clear Search
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-16 pb-6 pt-8 border-t border-gray-800/80">
+        <p class="text-gray-500 text-sm font-medium flex items-center justify-center gap-2">
+            Made with <i class="fas fa-heart text-red-500/80 text-xs"></i> for Productivity
+        </p>
+    </footer>
+
+    <!-- Clean, Robust & Tailwind-Friendly JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const clearButton = document.getElementById('clearButton');
+            const cards = document.querySelectorAll('.tool-card');
+            const noResults = document.getElementById('noResults');
+            const announcer = document.getElementById('a11y-announcer');
+
+            function searchTools() {
+                const query = searchInput.value.trim().toLowerCase();
+                
+                // Toggle clear button UI
+                clearButton.classList.toggle('hidden', query.length === 0);
+
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    const title = card.querySelector('h2').textContent.toLowerCase();
+                    const desc = card.querySelector('p').textContent.toLowerCase();
+                    
+                    if (title.includes(query) || desc.includes(query)) {
+                        card.classList.remove('hidden'); // Use Tailwind hidden class safely
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Handle Empty State
+                noResults.classList.toggle('hidden', visibleCount > 0);
+
+                // Update Screen Reader Announcer
+                if (query.length > 0) {
+                    announcer.textContent = visibleCount === 0 
+                        ? 'No tools found.' 
+                        : `${visibleCount} tool${visibleCount > 1 ? 's' : ''} found.`;
+                } else {
+                    announcer.textContent = '';
+                }
+            }
+
+            function clearSearch() {
+                searchInput.value = '';
+                searchTools();
+                searchInput.focus();
+            }
+
+            // Event Listeners
+            searchInput.addEventListener('input', searchTools);
+            clearButton.addEventListener('click', clearSearch);
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                }
+            });
+
+            // Initial sync for browser back navigation cache
+            if (searchInput.value) {
+                searchTools();
+            }
+        });
+    </script>
+</body>
+</html>
